@@ -1,0 +1,31 @@
+{% extends 'emptybase.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+    <h1 align="center">kısa linkler oluşturmak için ücretsiz kaydol.</h1>
+    <img  style="display: block;  margin-left: auto;  margin-right: auto;" src="https://txt.1001fonts.net/img/txt/dHRmLjQ0LmU0NTQyMS5jR0YwYUEsLC4w/rolling-beat-personal-use.regular.png" alt="">
+
+
+    {{ form_start(registrationForm,{'attr': {'class': 'w-50 p-4 shadow mx-auto'}} ) }}
+        {{ form_row(registrationForm.email,{'attr': {'class': 'form-control'}} ) }}
+        {{ form_row(registrationForm.plainPassword, { label: 'Password'  } ,{'attr': {'class': 'form-control'}} ) }}
+
+    {{ form_row(registrationForm.name ,{'attr': {'class': 'form-control'}} ) }}
+    {{ form_row(registrationForm.surname ,{'attr': {'class': 'form-control'}} ) }}
+    {{ form_row(registrationForm.phone  ,{'attr': {'class': 'form-control'}} ) }}
+    {{ form_row(registrationForm.address  ,{'attr': {'class': 'form-control'}} ) }}
+
+    {{ form_row(registrationForm.agreeTerms  ) }}
+
+
+
+
+        <button type="submit" class="btn btn-primary">Register</button>
+    {{ form_end(registrationForm) }}
+
+{% endblock %}

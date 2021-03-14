@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'emptybase.html.twig' %}
 
 {% block title %}Log in!{% endblock %}
 
@@ -14,7 +14,8 @@
             </div>
         {% endif %}
 
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+
+        <img  style="display: block;  margin-left: auto;  margin-right: auto;" src="https://txt.1001fonts.net/img/txt/dHRmLjQ0LmU0NTQyMS5jR0YwYUEsLC4w/rolling-beat-personal-use.regular.png" alt="">
         <div class="form-group">
 
             <label for="inputEmail">Email</label>
@@ -42,5 +43,15 @@
         <button class="btn btn-lg btn-primary" type="submit">
             Sign in
         </button>
+        <div class="form-group mt-2">
+            <div class="col-md-12 control">
+                <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
+                    Don't have an account!
+                    <a href="/register"  ">
+                        Sign Up Here
+                    </a>
+                </div>
+            </div>
+        </div>
     </form>
 {% endblock %}
