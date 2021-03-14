@@ -30,6 +30,8 @@ class AppLoginAuthenticator extends AbstractFormLoginAuthenticator implements Pa
     private $urlGenerator;
     private $csrfTokenManager;
     private $passwordEncoder;
+    //------Custom URL redirect by role after success login
+    private $security;
 
     public function __construct(EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator, CsrfTokenManagerInterface $csrfTokenManager, UserPasswordEncoderInterface $passwordEncoder)
     {
@@ -95,7 +97,10 @@ class AppLoginAuthenticator extends AbstractFormLoginAuthenticator implements Pa
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
             return new RedirectResponse($targetPath);
         }
-        return new RedirectResponse($this->urlGenerator->generate('home'));
+        $userRoles = $token->getUser()->getRoles();
+        $url=in_array("admin", $userRoles)?"admin":"home";
+
+        return new RedirectResponse($this->urlGenerator->generate($url));
         // For example :   throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 
