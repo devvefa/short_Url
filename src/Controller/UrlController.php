@@ -17,7 +17,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class UrlController extends AbstractController
 {
-    #[Route('/url', name: 'url_list')]
+    #[Route('adminphp bin/console make:authphp bin/console make:auth/url', name: 'url_list')]
     public function index(UrlRepository $urlRepository): Response
     {
 
