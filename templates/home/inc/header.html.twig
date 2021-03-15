@@ -1,13 +1,16 @@
-
 <header>
     <div class="container">
-        <a href="/">  <img src="https://txt.1001fonts.net/img/txt/dHRmLjQ0LmU0NTQyMS5jR0YwYUEsLC4w/rolling-beat-personal-use.regular.png" class="logo" alt="Short Url Logo" />
+        <a href="/"> <img
+                    src="https://txt.1001fonts.net/img/txt/dHRmLjQ0LmU0NTQyMS5jR0YwYUEsLC4w/rolling-beat-personal-use.regular.png"
+                    class="logo" alt="Short Url Logo"/>
         </a>
+
         <div class="auth-buttons">
             {% if app.user %}
 
                 <div class="dropdown ">
-                    <button class="button button-primary"> <i class="far fa-user-circle"></i>  {{ app.user.name }}  <i class="fas fa-caret-down"></i> </button>
+                    <button class="button button-primary"><i class="far fa-user-circle"></i> {{ app.user.name }} <i
+                                class="fas fa-caret-down"></i></button>
                     <div class="dropdown-content">
                         <a href="/profile">Profilim</a>
                         <a href="#">Bağlanıtlarım</a>
@@ -22,7 +25,22 @@
                 <a href="/register" class="button button-bordered">Signup</a>
             {% endif %}
         </div>
+
+
     </div>
 
 
 </header>
+
+<div class="container">
+<nav>
+    <ul>
+        <li><a href="about.html">Hakkında</a></li>
+        <li><a href="services.html">Çözüm Ortaklarımız</a></li>
+        <li><a href="products.html">Hızmetlerimiz</a></li>
+        <li><a href="jobs.html">İnsan Kaynakları</a></li>
+        <li><a href="contact.html">İletişim</a></li>
+        <li id="x" class="x"><a href="privacy.html">Gizlilik Politikamız</a></li>
+    </ul>
+</nav>
+</div>
