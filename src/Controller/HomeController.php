@@ -55,7 +55,6 @@ class HomeController extends AbstractController
         }
         return $this->render('home/contact.html.twig', [
             'controller_name' => 'HomeController',
-            // 'setting' => $settingRepository->findAll()[0], SettingRepository $settingRepository ,
 
 
         ]);
