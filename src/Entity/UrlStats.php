@@ -57,6 +57,11 @@ class UrlStats
      */
     private $created_at;
 
+    /**
+     * @ORM\Column(type="string", length=25)
+     */
+    private $city;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -154,6 +159,18 @@ class UrlStats
     public function setCreatedAt(\DateTimeInterface $created_at): self
     {
         $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    public function setCity(string $city): self
+    {
+        $this->city = $city;
 
         return $this;
     }
