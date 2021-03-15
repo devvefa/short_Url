@@ -6,12 +6,12 @@
         <div class="auth-buttons">
             {% if app.user %}
 
-                <div class="dropdown">
-                    <button class="button button-primary">Hesabım  <i class="fas fa-caret-down"></i> </button>
+                <div class="dropdown ">
+                    <button class="button button-primary"> <i class="far fa-user-circle"></i>  {{ app.user.name }}  <i class="fas fa-caret-down"></i> </button>
                     <div class="dropdown-content">
                         <a href="/profile">Profilim</a>
                         <a href="#">Bağlanıtlarım</a>
-                        <a href="#">Link 3</a>
+                        <a href="#">Mesajlarım</a>
                     </div>
                 </div>
 
