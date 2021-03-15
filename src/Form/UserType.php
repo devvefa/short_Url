@@ -21,9 +21,12 @@ class UserType extends AbstractType
                     'multiple' => true,
                 ]
             )
-
-            ->add('is_active')
-        ;
+            ->add('is_active');
+           /* ->add('email')
+            ->add('name')
+            ->add('surname')
+            ->add('phone')
+            ->add('address');*/
     }
 
     public function configureOptions(OptionsResolver $resolver)
