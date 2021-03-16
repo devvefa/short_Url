@@ -1,0 +1,36 @@
+<div class="container ">
+ <div class="col">
+
+{{ form_start(form,{'attr': {'class': 'form-group row '}} ) }}
+
+ {{ form_row(form.title,{'attr': {'class': 'form-control'}} ) }}
+
+ {{ form_row(form.keywords,{'attr': {'class': 'form-control'}} ) }}
+ {{ form_row(form.description,{'attr': {'class': 'form-control'}} ) }}
+ {{ form_row(form.company,{'attr': {'class': 'form-control'}} ) }}
+ {{ form_row(form.address,{'attr': {'class': 'form-control'}} ) }}
+ {{ form_row(form.phone,{'attr': {'class': 'form-control'}} ) }}
+ {{ form_row(form.fax,{'attr': {'class': 'form-control'}} ) }}
+ {{ form_row(form.email,{'attr': {'class': 'form-control'}} ) }}
+ {{ form_row(form.smtpserver,{'attr': {'class': 'form-control'}} ) }}
+ {{ form_row(form.smtpemail,{'attr': {'class': 'form-control'}} ) }}
+ {{ form_row(form.smtppassword,{'attr': {'class': 'form-control'}} ) }}
+ {{ form_row(form.smtpport,{'attr': {'class': 'form-control'}} ) }}
+ {{ form_row(form.facebook,{'attr': {'class': 'form-control'}} ) }}
+ {{ form_row(form.instagram,{'attr': {'class': 'form-control'}} ) }}
+  {{ form_row(form.status,{'attr': {'class': 'form-control'}} ) }}
+
+ {{ form_row(form.twitter,{'attr': {'class': 'form-control'}} ) }}
+
+</div>
+ {{ form_row(form.aboutus,{'attr': {'class': 'form-control'}} ) }}
+ {{ form_row(form.contact,{'attr': {'class': 'form-control'}} ) }}
+ {{ form_row(form.reference,{'attr': {'class': 'form-control'}} ) }}
+
+
+
+
+    <button class="btn btn-danger">{{ button_label|default('Save') }}</button>
+
+</div>
+{{ form_end(form) }}
