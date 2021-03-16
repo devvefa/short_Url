@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Url;
 use App\Entity\UrlStats;
+use App\Form\UrlType;
 use App\Repository\UrlRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -11,25 +12,82 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
-
 use Symfony\Component\Validator\Constraints as Assert;
 
 class UrlController extends AbstractController
 {
-    #[Route('admin/url', name: 'url_list')]
+    #[Route('/admin/url', name: 'url_index', methods: ['GET'])]
     public function index(UrlRepository $urlRepository): Response
     {
-
-        return $this->render('url/index.html.twig', [
+        return $this->render('admin/url/index.html.twig', [
             'urls' => $urlRepository->findAll(),
         ]);
     }
 
+    #[Route('/admin/url/new', name: 'url_new', methods: ['GET', 'POST'])]
+    public function newurl(Request $request): Response
+    {
+        $url = new Url();
+        $form = $this->createForm(UrlType::class, $url);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($url);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('url_index');
+        }
+
+        return $this->render('url/new.html.twig', [
+            'url' => $url,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/admin/url/{id}', name: 'url_show', methods: ['GET'])]
+    public function show(Url $url): Response
+    {
+        return $this->render('url/show.html.twig', [
+            'url' => $url,
+        ]);
+    }
+
+    #[Route('/admin/url/{id}/edit', name: 'url_edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, Url $url): Response
+    {
+        $form = $this->createForm(UrlType::class, $url);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('url_index');
+        }
+
+        return $this->render('url/edit.html.twig', [
+            'url' => $url,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/admin/url/{id}', name: 'url_delete', methods: ['DELETE'])]
+    public function delete(Request $request, Url $url): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$url->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($url);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('url_index');
+    }
 
 
     #[Route('/url/create', name: 'url_create')]
-    public function create(Request $request, ValidatorInterface $validator): Response
+    public function create(Request $request, ValidatorInterface $validator ): Response
     {
 
         $url = $request->get('url');
@@ -63,13 +121,15 @@ class UrlController extends AbstractController
             $alpha_numeric = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
             $url_hash = substr( str_shuffle($alpha_numeric),0,5);
 
+
             $em = $this->getDoctrine()->getManager();
+            $userId=$this->getUser()? $this->getUser()->getId():1 ;
 
             $url_item = new Url();
             $url_item->setUrl($url)
                 ->setUrlHash( $url_hash )
                 ->setCreatedAt( (new \DateTime()) )
-                ->setUserId(1)
+                ->setUserId($userId)
                 ->setClickCount(0)
                 ->setIsPublic(true)
                 ->setExpiredAt(( new \DateTime() ))
@@ -108,7 +168,10 @@ class UrlController extends AbstractController
             $url = $url_item->getUrl();
             $urlId = $url_item->getId();
 
+            $url_item->setClickCount($url_item->getClickCount()+1);
+
             $this->saveStats($urlId, $request);
+            $this->getDoctrine()->getManager()->flush();
 
             return $this->redirect($url);
         }
@@ -137,6 +200,8 @@ class UrlController extends AbstractController
         $em->persist($url_stats);
         $em->flush();
     }
+
+
 
 
 }
