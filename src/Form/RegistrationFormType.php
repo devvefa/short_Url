@@ -56,10 +56,26 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('name')
-            ->add('surname')
-            ->add('phone')
-            ->add('address')
+            ->add('name',TextType::class, [
+                'row_attr' => [
+                    'class' => 'form-group'
+                ]
+            ])
+            ->add('surname',TextType::class, [
+                'row_attr' => [
+                    'class' => 'form-group'
+                ]
+            ])
+            ->add('phone',TextType::class, [
+                'row_attr' => [
+                    'class' => 'form-group'
+                ]
+            ])
+            ->add('address',TextType::class, [
+                'row_attr' => [
+                    'class' => 'form-group'
+                ]
+            ])
 
         ;
 

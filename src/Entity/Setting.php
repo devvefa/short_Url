@@ -93,24 +93,29 @@ class Setting
     private $twitter;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $aboutus;
-
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $contact;
-
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $reference;
-
-    /**
      * @ORM\Column(type="string", length=6, nullable=true)
      */
     private $status;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $terms;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $banner;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $feature;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $feature_description;
 
     public function getId(): ?int
     {
@@ -296,43 +301,6 @@ class Setting
 
         return $this;
     }
-
-    public function getAboutus(): ?string
-    {
-        return $this->aboutus;
-    }
-
-    public function setAboutus(?string $aboutus): self
-    {
-        $this->aboutus = $aboutus;
-
-        return $this;
-    }
-
-    public function getContact(): ?string
-    {
-        return $this->contact;
-    }
-
-    public function setContact(?string $contact): self
-    {
-        $this->contact = $contact;
-
-        return $this;
-    }
-
-    public function getReference(): ?string
-    {
-        return $this->reference;
-    }
-
-    public function setReference(?string $reference): self
-    {
-        $this->reference = $reference;
-
-        return $this;
-    }
-
     public function getStatus(): ?string
     {
         return $this->status;
@@ -341,6 +309,54 @@ class Setting
     public function setStatus(?string $status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getTerms(): ?string
+    {
+        return $this->terms;
+    }
+
+    public function setTerms(string $terms): self
+    {
+        $this->terms = $terms;
+
+        return $this;
+    }
+
+    public function getBanner(): ?string
+    {
+        return $this->banner;
+    }
+
+    public function setBanner(string $banner): self
+    {
+        $this->banner = $banner;
+
+        return $this;
+    }
+
+    public function getFeature(): ?string
+    {
+        return $this->feature;
+    }
+
+    public function setFeature(string $feature): self
+    {
+        $this->feature = $feature;
+
+        return $this;
+    }
+
+    public function getFeatureDescription(): ?string
+    {
+        return $this->feature_description;
+    }
+
+    public function setFeatureDescription(string $feature_description): self
+    {
+        $this->feature_description = $feature_description;
 
         return $this;
     }

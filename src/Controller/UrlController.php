@@ -78,7 +78,7 @@ class UrlController extends AbstractController
             $em->persist($url_item);
             $em->flush();
 
-            $shortUrl = $_SERVER['SERVER_NAME'].$url_hash;
+            $shortUrl = $_SERVER['SERVER_NAME']."/".$url_hash;
         }
 
 

@@ -7,9 +7,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&display=swap" rel="stylesheet">
 
-    <link href="{{ asset('asset') }}/lib/bootstrap/css/simple-sidebar.css" rel="stylesheet" />
-    <link href="{{ asset('asset') }}/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="{{ asset('asset') }}/lib/fontawsome/css/all.min.css" rel="stylesheet" />
+    <link type="text/css" href="{{ asset('asset') }}/lib/bootstrap/css/simple-sidebar.css" rel="stylesheet" />
+      <link type="text/css" href="{{ asset('asset') }}/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link type="text/css"href="{{ asset('asset') }}/lib/fontawsome/css/all.min.css" rel="stylesheet" />
 
     {# Run `composer require symfony/webpack-encore-bundle`
        and uncomment the following Encore helpers to start using Symfony UX #}
@@ -61,7 +61,10 @@
 
 {% block footer %} {% endblock %}
 
+<script src="{{ asset('asset') }}/lib/jquery/jquery.min.js"></script>
+<script src="{{ asset('asset') }}/lib/bootstrap/js/bootstrap.min.js"></script>
 <script src="{{ asset('asset') }}/lib/fontawsome/js/all.min.js"></script>
+
 <script>
     $("#menu-toggle").click(function (e) {
         e.preventDefault();

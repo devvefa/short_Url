@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{% endblock %}
+{% block title %} {% endblock %}
 
 
 {% block header %}
@@ -13,14 +13,13 @@
         <section class="banner">
             <div class="container">
                 <div class="col w-50p">
-                    <h1>Short links, big results</h1>
-                    <p>A URL shortener built with powerful tools to
-                        help you grow and protect your brand.
+                    <h1>{{ setting.title }}</h1>
+                    <p>{{ setting.Description }}
                     </p>
-                    <a href="/signup" class="button button-primary">Get started for free</a>
+                    <a href="/signup" class="button button-primary">{{ setting.Keywords }}</a>
                 </div>
                 <div class="col w-50p">
-                    <img src="https://docrdsfx76ssb.cloudfront.net/static/1615406718/pages/wp-content/uploads/2020/05/illo-mobile-810x480-1.jpg"/>
+                    <img src="{{ asset('asset') }}/images/{{ setting.banner }}"/>
                 </div>
             </div>
         </section>
@@ -36,7 +35,7 @@
                 </form>
 
                 <div class="url-form-terms">
-                    By clicking SHORTEN, you are agreeing to Path Shortener’s
+                    {{ setting.terms }}
                     <a href="/terms">Terms of Service</a> and <a href="/privacy">Privacy Policy</a>
                 </div>
 
@@ -51,10 +50,9 @@
 
         <section class="features">
             <div class="container row">
-                <h3 class="features-title">The link shortener that has your brand’s back</h3>
+                <h3 class="features-title">{{ setting.feature }}</h3>
                 <p class="features-description">
-                    Your brand wasn’t built to be hidden. Help it stand out with branded
-                    links that drive 34% more clicks.
+                    {{ setting.featuredescription }}
                 </p>
 
                 <div class="feature-rows">

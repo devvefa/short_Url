@@ -1,0 +1,33 @@
+{% extends 'emptybase.html.twig' %}
+
+{% block title %} {% endblock %}
+
+
+{% block header %}
+    {% include 'home/inc/header.html.twig' %}
+{% endblock %}
+
+{% block body %}
+    <div class="about-section paddingTB60 gray-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7 col-sm-6">
+                    <div class="about-title clearfix">
+                        <h1> {{ page.page}} </h1>
+                        <h3>{{ page.title}}</h3>
+                        {{ page.description}}
+                        {{ page.body| raw }}
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block footer %}
+    {% include 'home/inc/footer.html.twig' %}
+{% endblock %}
