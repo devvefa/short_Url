@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Messages;
 use App\Form\MessagesType;
@@ -10,15 +10,29 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/messages')]
+#[Route('admin/messages')]
 class MessagesController extends AbstractController
 {
-    #[Route('/', name: 'messages_index', methods: ['GET'])]
-    public function index(MessagesRepository $messagesRepository): Response
+        #[Route('/{filter}', name: 'messages_index', methods: ['GET'],defaults: ['filter' => 'all'])]
+
+    public function index(string $filter, MessagesRepository $messagesRepository): Response
     {
-        return $this->render('messages/index.html.twig', [
-            'messages' => $messagesRepository->findAll(),
-        ]);
+
+        if ($filter === "all") {
+            return $this->render('admin/messages/index.html.twig', [
+                'messages' => $messagesRepository->findAll()
+            ]);
+
+        }
+
+
+        else {
+            return $this->render('admin/messages/index.html.twig', [
+                'messages' => $messagesRepository->findBy(['status' => $filter])
+
+            ]);
+
+        }
     }
 
     #[Route('/new', name: 'messages_new', methods: ['GET', 'POST'])]
@@ -36,16 +50,16 @@ class MessagesController extends AbstractController
             return $this->redirectToRoute('messages_index');
         }
 
-        return $this->render('messages/new.html.twig', [
+        return $this->render('admin/messages/new.html.twig', [
             'message' => $message,
             'form' => $form->createView(),
         ]);
     }
 
-    #[Route('/{id}', name: 'messages_show', methods: ['GET'])]
+    #[Route('/show/{id}', name: 'messages_show', methods: ['GET'])]
     public function show(Messages $message): Response
     {
-        return $this->render('messages/show.html.twig', [
+        return $this->render('admin/messages/show.html.twig', [
             'message' => $message,
         ]);
     }
@@ -62,7 +76,7 @@ class MessagesController extends AbstractController
             return $this->redirectToRoute('messages_index');
         }
 
-        return $this->render('messages/edit.html.twig', [
+        return $this->render('admin/messages/edit.html.twig', [
             'message' => $message,
             'form' => $form->createView(),
         ]);
@@ -71,7 +85,7 @@ class MessagesController extends AbstractController
     #[Route('/{id}', name: 'messages_delete', methods: ['DELETE'])]
     public function delete(Request $request, Messages $message): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$message->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $message->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($message);
             $entityManager->flush();

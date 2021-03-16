@@ -1,9 +1,14 @@
-{% extends 'base.html.twig' %}
+{% extends 'adminbase.html.twig' %}
 
 {% block title %}Messages index{% endblock %}
 
 {% block body %}
     <h1>Messages index</h1>
+    <a class="btn btn-danger " href="{{ path('messages_index',{'filter': 'all'}) }}"> tüm mesajlar</a>
+    <a class="btn btn-success " href="{{ path('messages_index',{'filter': 'new'}) }}"> yeni mesajlar</a>
+    <a class="btn btn-secondary " href="{{ path('messages_index',{'filter': 'answered'}) }}">yanıtlanan mesajlar</a>
+    <a class="btn btn-warning " href="{{ path('messages_index',{'filter': 'read'}) }}">okunan mesajlar</a>
+
 
     <table class="table">
         <thead>
@@ -43,5 +48,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('messages_new') }}">Create new</a>
+{#    <a href="{{ path('messages_new') }}">Create new</a>#}
 {% endblock %}

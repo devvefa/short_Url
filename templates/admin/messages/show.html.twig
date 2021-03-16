@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'adminbase.html.twig' %}
 
 {% block title %}Messages{% endblock %}
 
@@ -42,9 +42,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('messages_index') }}">back to list</a>
+    <a href="{{ path('messages_index',{'filter': 'all'}) }}">back to list</a>
 
     <a href="{{ path('messages_edit', {'id': message.id}) }}">edit</a>
 
-    {{ include('messages/_delete_form.html.twig') }}
+    {{ include('admin/messages/_delete_form.html.twig') }}
 {% endblock %}
