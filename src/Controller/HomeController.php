@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class HomeController extends AbstractController
 {
@@ -66,13 +67,17 @@ class HomeController extends AbstractController
     #[Route('/page/{id}', name: 'page')]
     public function newpage( $id, PageRepository $page): Response
     {
-        if ($page->find($id)){
+        echo
 
+
+        die();
+        if ($page->find($id)){
 
             return $this->render('home/page.html.twig', [
                 'controller_name' => 'HomeController',
                 'page'=> $page->find($id),
-                'pages'=> $page->findAll()
+                'pages'=> $page->findAll(),
+
             ]);
         }
 

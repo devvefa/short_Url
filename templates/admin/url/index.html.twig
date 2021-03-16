@@ -1,20 +1,53 @@
-{% extends 'base.html.twig' %}
+{% extends 'adminbase.html.twig' %}
 
 {% block title %}Hello UrlController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <h1>Url index</h1>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Url</th>
+            <th>UrlHash</th>
+            <th>Created_at</th>
+            <th>Update_at</th>
+            <th>Deleted_at</th>
+            <th>Is_active</th>
+            <th>User_id</th>
+            <th>Click_count</th>
+            <th>Is_public</th>
+            <th>Expired_at</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for url in urls %}
+            <tr>
+                <td>{{ url.id }}</td>
+                <td>{{ url.url }}</td>
+                <td>{{ url.urlHash }}</td>
+                <td>{{ url.createdAt ? url.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ url.updateAt ? url.updateAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ url.deletedAt ? url.deletedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ url.isActive ? 'Yes' : 'No' }}</td>
+                <td>{{ url.userId }}</td>
+                <td>{{ url.clickCount }}</td>
+                <td>{{ url.isPublic ? 'Yes' : 'No' }}</td>
+                <td>{{ url.expiredAt ? url.expiredAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('url_show', {'id': url.id}) }}">show</a>
+                    <a href="{{ path('url_edit', {'id': url.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="12">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/Karaahmet/Desktop/son/my_project_name/src/Controller/UrlController.php'|file_link(0) }}">src/Controller/UrlController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/Karaahmet/Desktop/son/my_project_name/templates/url/index.html.twig'|file_link(0) }}">templates/url/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <a href="{{ path('url_new') }}">Create new</a>
 {% endblock %}

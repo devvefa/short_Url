@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Url{% endblock %}
+
+{% block body %}
+    <h1>Url</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ url.id }}</td>
+            </tr>
+            <tr>
+                <th>Url</th>
+                <td>{{ url.url }}</td>
+            </tr>
+            <tr>
+                <th>UrlHash</th>
+                <td>{{ url.urlHash }}</td>
+            </tr>
+            <tr>
+                <th>Created_at</th>
+                <td>{{ url.createdAt ? url.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Update_at</th>
+                <td>{{ url.updateAt ? url.updateAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Deleted_at</th>
+                <td>{{ url.deletedAt ? url.deletedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Is_active</th>
+                <td>{{ url.isActive ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>User_id</th>
+                <td>{{ url.userId }}</td>
+            </tr>
+            <tr>
+                <th>Click_count</th>
+                <td>{{ url.clickCount }}</td>
+            </tr>
+            <tr>
+                <th>Is_public</th>
+                <td>{{ url.isPublic ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Expired_at</th>
+                <td>{{ url.expiredAt ? url.expiredAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('url_index') }}">back to list</a>
+
+    <a href="{{ path('url_edit', {'id': url.id}) }}">edit</a>
+
+    {{ include('url/_delete_form.html.twig') }}
+{% endblock %}
