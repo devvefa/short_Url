@@ -25,6 +25,7 @@ class UserType extends AbstractType
                     'multiple' => true,
                 ]
             )
+
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'invalid_message' => 'The password fields must match.',
