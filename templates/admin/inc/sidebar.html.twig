@@ -1,4 +1,3 @@
-
 <div class="border border-secondary border-left-0 border-top-0 mt" id="sidebar-wrapper">
     <div class="list-group list-group-flush">
 
@@ -15,15 +14,42 @@
             </div>
 
         </div>
+        {% set route_name = app.request.attributes.get('_route') %}
 
+        <a href="{{ path('messages_index') }}"
+                {% if route_name == "messages_index" %}
+            class="list-group-item list-group-item-action active"
+        {% else %}
+            class="list-group-item list-group-item-action "
+                {% endif %}>
+            <i class="fas fa-tasks mr-2"></i>mesajlar</a>
 
-        <a href="{{ path('messages_index') }}"  class="list-group-item list-group-item-action "><i class="fas fa-tasks mr-2"></i>mesajlar</a>
+        <a href="{{ path('url_index') }}" {% if route_name == "url_index" %}
+            class="list-group-item list-group-item-action active"
+        {% else %}
+            class="list-group-item list-group-item-action "
+                {% endif %}><i
+                    class="fas fa-exclamation mr-2"></i> Url İşlemleri</a>
+        <a href="{{ path('setting_index') }}" {% if route_name == "setting_index" %}
+            class="list-group-item list-group-item-action active"
+        {% else %}
+            class="list-group-item list-group-item-action "
+                {% endif %}><i
+                    class="fas fa-clipboard-list mr-2"></i>Anasaya Yönetimi</a>
+        <a href="#" {% if route_name == "user_index" %}
+            class="list-group-item list-group-item-action active"
+        {% else %}
+            class="list-group-item list-group-item-action "
+                {% endif %}><i class="fas fa-chart-pie mr-2"></i> istaitikler</a>
 
-        <a  href="{{ path('url_index') }}" class="list-group-item list-group-item-action"><i class="fas fa-exclamation mr-2"></i>  Url İşlemleri</a>
-        <a href="{{ path('setting_index') }}"  class="list-group-item list-group-item-action"><i class="fas fa-clipboard-list mr-2"></i>Anasaya Yönetimi</a>
-        <a  href="#" class="list-group-item list-group-item-action"><i class="fas fa-chart-pie mr-2"></i> istaitikler</a>
-        <a  href="#" class="list-group-item list-group-item-action"> <i class="far fa-bell mr-2"></i>Bildirimler</a>
-        <a href="{{ path('user_index') }}" class="list-group-item list-group-item-action"><i class="fas fa-user mr-2"></i>Kullancılar</a>
-        <a  href="#" class="list-group-item list-group-item-action"> <i class="fas fa-sign-out-alt mr-2"></i>Çıkış Yap</a>
+        <a href="{{ path('user_index') }}" {% if route_name == "user_index" %}
+            class="list-group-item list-group-item-action active"
+        {% else %}
+            class="list-group-item list-group-item-action "
+                {% endif %}><i
+                    class="fas fa-user mr-2"></i>Kullancılar</a>
+        <a href="/logout" class="list-group-item list-group-item-action "
+        > <i class="fas fa-sign-out-alt mr-2"></i>Çıkış
+            Yap</a>
     </div>
 </div>
