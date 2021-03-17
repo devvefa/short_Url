@@ -41,7 +41,7 @@ class UrlController extends AbstractController
             return $this->redirectToRoute('url_index');
         }
 
-        return $this->render('url/new.html.twig', [
+        return $this->render('admin/url/new.html.twig', [
             'url' => $url,
             'form' => $form->createView(),
         ]);
@@ -50,7 +50,7 @@ class UrlController extends AbstractController
     #[Route('/admin/url/{id}', name: 'url_show', methods: ['GET'])]
     public function show(Url $url): Response
     {
-        return $this->render('url/show.html.twig', [
+        return $this->render('admin/url/show.html.twig', [
             'url' => $url,
         ]);
     }
@@ -67,7 +67,7 @@ class UrlController extends AbstractController
             return $this->redirectToRoute('url_index');
         }
 
-        return $this->render('url/edit.html.twig', [
+        return $this->render('admin/url/edit.html.twig', [
             'url' => $url,
             'form' => $form->createView(),
         ]);

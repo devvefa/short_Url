@@ -1,4 +1,18 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+<div class="container">
+{{ form_start(form,{'attr': {'class': 'form-group  '}} ) }}
+
+
+{{ form_row(form.url,{'attr': {'class': 'form-control'}} ) }}
+{{ form_row(form.urlHash,{'attr': {'class': 'form-control'}} ) }}
+    {{ form_row(form.is_active,{'attr': {'class': 'form-control'}} ) }}
+    {{ form_row(form.user_id,{'attr': {'class': 'form-control'}} ) }}
+    {{ form_row(form.click_count,{'attr': {'class': 'form-control'}} ) }}
+    {{ form_row(form.is_public,{'attr': {'class': 'form-control'}} ) }}
+    {{ form_row(form.expired_at,{'attr': {'class': 'form-control'}} ) }}
+
+    <br>
+<button class="btn btn-danger">{{ button_label|default('Save') }}</button>
+    <a class="btn btn-primary float-right" href="{{ path('url_index') }}">back to list</a>
+
 {{ form_end(form) }}
+</div>

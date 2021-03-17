@@ -67,10 +67,7 @@ class HomeController extends AbstractController
     #[Route('/page/{id}', name: 'page')]
     public function newpage( $id, PageRepository $page): Response
     {
-        echo
 
-
-        die();
         if ($page->find($id)){
 
             return $this->render('home/page.html.twig', [

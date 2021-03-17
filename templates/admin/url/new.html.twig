@@ -1,11 +1,10 @@
-{% extends 'base.html.twig' %}
+{% extends 'adminbase.html.twig' %}
 
 {% block title %}New Url{% endblock %}
 
 {% block body %}
     <h1>Create new Url</h1>
 
-    {{ include('url/_form.html.twig') }}
+    {{ include('admin/url/_form.html.twig') }}
 
-    <a href="{{ path('url_index') }}">back to list</a>
 {% endblock %}
