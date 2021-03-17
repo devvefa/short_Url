@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Repository\PageRepository;
+use App\Repository\UrlRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,13 +16,14 @@ use App\Entity\User;
 class ProfileController extends AbstractController
 {
     #[Route('/profile', name: 'profile')]
-    public function index(): Response
+    public function index(UrlRepository $urlRepository, PageRepository $page): Response
     {
 
 
         return $this->render('profile/index.html.twig', [
-            'userInfo' => $this->getUser()
-
+            'userInfo' => $this->getUser(),
+            'pages'=> $page->findAll(),
+            'urls' => $urlRepository->findBy(['user_id'=> $this->getUser()->getId()]),
         ]);
     }
 
@@ -57,6 +60,7 @@ class ProfileController extends AbstractController
 
             return $this->redirectToRoute('profile' ,[
             'userInfo' => $this->getUser()
+
 
             ]);
         }
