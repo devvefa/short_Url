@@ -94,19 +94,13 @@ class UrlController extends AbstractController
         $url = $request->get('url');
         $shortUrl = null;
 
-        $name = 'volkan';
-        $email = 'testemail_adresi';
 
         # url validation
         $constraints = new Assert\Collection([
-            #'name' => [ new Assert\Length(['min'=>10]), new Assert\Length(['max'=>12]) ],
-            #'email' => [ new Assert\Email()],
             'url' => [new Assert\Url()]
         ]);
 
         $violations = $validator->validate([
-            #'name'=>$name,
-            #'email'=>$email,
             'url' => $url
         ], $constraints);
 
@@ -168,10 +162,20 @@ class UrlController extends AbstractController
         if ($url_item) {
             $url = $url_item->getUrl();
             $urlId = $url_item->getId();
-
+            $url_stats = new UrlStats();
             $url_item->setClickCount($url_item->getClickCount() + 1);
+            $url_item->setStats(
 
-            $this->saveStats($urlId, $request);
+                $url_stats->setUrlId($urlId)
+                ->setBrowser($this->getBrowser())
+                ->setIpAddress($request->getClientIp())
+                ->setDevice($this->getOS())
+                ->setResolution('-')
+                ->setLocale( 'tr')
+                ->setCity('istanbul')
+                ->setCountry('turkey')
+                ->setCreatedAt( ( new \DateTime() ))
+        );
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirect($url);
@@ -180,10 +184,11 @@ class UrlController extends AbstractController
         return $this->redirectToRoute('home');
     }
 
-    public function saveStats($urlId, Request $request)
+    public function saveStats($urlId, Request $request ): UrlStats
     {
 
-        $clientIp = $request->getClientIp();
+
+   /*     $clientIp = $request->getClientIp();
 
         $em = $this->getDoctrine()->getManager();
 
@@ -199,7 +204,7 @@ class UrlController extends AbstractController
             ->setCreatedAt( ( new \DateTime() ));
 
         $em->persist($url_stats);
-        $em->flush();
+        $em->flush();*/
     }
 
 

@@ -70,6 +70,16 @@ class Url
      */
     private $expired_at;
 
+    /**
+     * @ORM\OneToOne(targetEntity=UrlStats::class, cascade={"persist", "remove"})
+     */
+    private $stats;
+
+    /**
+     * @ORM\Column(type="boolean",nullable=true)
+     */
+    private $favorite;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -191,6 +201,30 @@ class Url
     public function setExpiredAt(\DateTimeInterface $expired_at): self
     {
         $this->expired_at = $expired_at;
+
+        return $this;
+    }
+
+    public function getStats(): ?UrlStats
+    {
+        return $this->stats;
+    }
+
+    public function setStats(?UrlStats $stats): self
+    {
+        $this->stats = $stats;
+
+        return $this;
+    }
+
+    public function getFavorite(): ?bool
+    {
+        return $this->favorite;
+    }
+
+    public function setFavorite(?bool $favorite): self
+    {
+        $this->favorite = $favorite;
 
         return $this;
     }

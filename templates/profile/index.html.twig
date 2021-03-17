@@ -122,7 +122,6 @@
             <th>Url</th>
             <th>UrlHash</th>
             <th>Created_at</th>
-            <th>Deleted_at</th>
             <th>Is_active</th>
             <th>Click_count</th>
             <th>Expired_at</th>
@@ -138,8 +137,6 @@
                 <td>{{ url.url }}</td>
                 <td>{{ url.urlHash }}</td>
                 <td>{{ url.createdAt ? url.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ url.updateAt ? url.updateAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ url.deletedAt ? url.deletedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ url.isActive ? 'Yes' : 'No' }}</td>
                 <td>{{ url.clickCount }}</td>
                 <td>{{ url.expiredAt ? url.expiredAt|date('Y-m-d H:i:s') : '' }}</td>
