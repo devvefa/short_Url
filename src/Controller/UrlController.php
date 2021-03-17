@@ -19,8 +19,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 class UrlController extends AbstractController
 {
     #[Route('/admin/url', name: 'url_index', methods: ['GET'])]
-    public function index(UrlRepository $urlRepository): Response
+    public function index(UrlRepository $urlRepository ): Response
     {
+
         return $this->render('admin/url/index.html.twig', [
             'urls' => $urlRepository->findAll(),
         ]);

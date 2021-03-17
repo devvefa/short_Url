@@ -4,6 +4,7 @@ namespace App\Controller\Admin;;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Repository\UrlRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -53,10 +54,12 @@ class UserController extends AbstractController
     }
 
     #[Route('/{id}', name: 'user_show', methods: ['GET'])]
-    public function show(User $user): Response
+    public function show(User $user, UrlRepository $urlRepository,$id): Response
     {
         return $this->render('admin/user/show.html.twig', [
             'user' => $user,
+
+            'urls' => $urlRepository->findBy(['user_id'=>$id]),
         ]);
     }
 
