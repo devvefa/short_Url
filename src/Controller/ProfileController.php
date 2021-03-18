@@ -30,24 +30,24 @@ class ProfileController extends AbstractController
     #[Route('/profile/url/{key}', name: 'profile_url',defaults: ['key' => null])]
     public function userUrls($key, UrlRepository $urlRepository, PageRepository $page): Response
     {
-        if ($key==='topfive')
+        if ($key==='topfiveclicked')
 
 
-            return $this->render('profile/index.html.twig', [
+            return $this->render('profile/userurls.html.twig', [
                 'userInfo' => $this->getUser(),
                 'pages'=> $page->findAll(),
                 'urls' => $urlRepository->getTopFiveUrl( $this->getUser()->getId())
             ]);
         else if ($key==='favorite')
         {
-            return $this->render('profile/index.html.twig', [
+            return $this->render('profile/userurls.html.twig', [
                 'userInfo' => $this->getUser(),
                 'pages'=> $page->findAll(),
                 'urls' => $urlRepository->getFavriteUrl($this->getUser()->getId() )
             ]);
         }
         else{
-            return $this->render('profile/index.html.twig', [
+            return $this->render('profile/userurls.html.twig', [
                 'userInfo' => $this->getUser(),
                 'pages'=> $page->findAll(),
                 'urls' => $urlRepository->findBy(['user_id'=> $this->getUser()->getId()]),
@@ -56,7 +56,7 @@ class ProfileController extends AbstractController
     }
 
     #[Route('/profile/edit', name: 'profile_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, UserPasswordEncoderInterface $passwordEncoder, PageRepository $page): Response
+    public function editprofile(Request $request, UserPasswordEncoderInterface $passwordEncoder, PageRepository $page): Response
     {
 
 

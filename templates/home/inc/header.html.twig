@@ -12,9 +12,9 @@
                     <button class="button button-primary"><i class="far fa-user-circle"></i> {{ app.user.name }} <i
                                 class="fas fa-caret-down"></i></button>
                     <div class="dropdown-content">
-                        <a href="/profile">Profilim</a>
-                        <a href="#">Bağlanıtlarım</a>
-                        <a href="#">Mesajlarım</a>
+                        <a href="{{path('profile')}}">Profilim</a>
+                        <a href="{{path('profile_url')}}">Bağlanıtlarım</a>
+                        <a href="{{ path('profile_url', {'key': "topfiveclicked"}) }}">Sık kullnılan Bağlanıtlarım </a>
                     </div>
                 </div>
 

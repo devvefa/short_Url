@@ -15,6 +15,12 @@
 
         </div>
         {% set route_name = app.request.attributes.get('_route') %}
+        <a href="{{ path('admin') }}" {% if route_name == "admin" %}
+            class="list-group-item list-group-item-action active"
+        {% else %}
+            class="list-group-item list-group-item-action "
+                {% endif %}><i class="fas fa-chart-pie mr-2"></i> istaitikler
+        </a>
 
         <a href="{{ path('messages_index') }}"
                 {% if route_name == "messages_index" %}
@@ -36,11 +42,6 @@
             class="list-group-item list-group-item-action "
                 {% endif %}><i
                     class="fas fa-clipboard-list mr-2"></i>Anasaya Yönetimi</a>
-        <a href="#" {% if route_name == "user_index" %}
-            class="list-group-item list-group-item-action active"
-        {% else %}
-            class="list-group-item list-group-item-action "
-                {% endif %}><i class="fas fa-chart-pie mr-2"></i> istaitikler</a>
 
         <a href="{{ path('user_index') }}" {% if route_name == "user_index" %}
             class="list-group-item list-group-item-action active"

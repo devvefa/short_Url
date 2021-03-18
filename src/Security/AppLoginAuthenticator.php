@@ -98,7 +98,9 @@ class AppLoginAuthenticator extends AbstractFormLoginAuthenticator implements Pa
             return new RedirectResponse($targetPath);
         }
         $userRoles = $token->getUser()->getRoles();
-        $url=in_array("admin", $userRoles)?"admin":"home";
+
+        $url=in_array("ROLE_ADMIN", $userRoles)?"admin":"home";
+
 
         return new RedirectResponse($this->urlGenerator->generate($url));
         // For example :   throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);

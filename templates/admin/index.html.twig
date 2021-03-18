@@ -4,6 +4,189 @@
 
 
 {% block body %}
-    <h2> admin </h2>
 
+
+
+    <form  action="/admin" method="post" onsubmit="return changeThemeMode()">
+
+        {% set selectedtheme = app.session.get('mode')  %}
+        <label><input type="radio" name="theme" value="light"
+
+                    {% if selectedtheme == "light" %}
+                        checked
+                    {% endif %}
+            >Light</label>
+        <label><input type="radio" name="theme" value="dark"    {% if selectedtheme == "dark" %}
+            checked
+                    {% endif %}>Dark</label>
+        <button id="shortenButton" class="button button-primary" type="submit">change</button>
+    </form>
+
+
+
+    <div class="grey-bg container-fluid">
+        <section id="minimal-statistics">
+            <div class="row">
+                <div class="col-12 mt-3 mb-1">
+                    <h4 class="text-uppercase">Minimal Statistics Cards</h4>
+                    <p>Statistics on minimal cards.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-3 col-sm-6 col-12">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="media d-flex">
+                                    <div class="align-self-center">
+                                        <i class="fas fa-pencil-alt text-success  fa-3x float-left"></i>
+                                    </div>
+                                    <div class="media-body text-right">
+                                        <h3>278</h3>
+                                        <span>Yeni Link </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 col-12">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="media d-flex">
+                                    <div class="align-self-center">
+                                        <i class="fas fa-mouse-pointer text-warning  fa-3x float-left"></i>
+                                    </div>
+                                    <div class="media-body text-right">
+                                        <h3>156</h3>
+                                        <span>Tıklama Sayısı</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 col-12">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="media d-flex">
+                                    <div class="align-self-center">
+                                        <i class="fas fa-users text-primary  fa-3x float-left"></i>
+
+
+                                    </div>
+                                    <div class="media-body text-right">
+                                        <h3>64.89 %</h3>
+                                        <span> Kullanıcı</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 col-12">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="media d-flex">
+                                    <div class="align-self-center">
+                                        <i class=" fas fa-envelope  text-danger fa-3x float-left"></i>
+
+                                    </div>
+                                    <div class="media-body text-right">
+                                        <h3>423</h3>
+                                        <span>Yeni Mesaj</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <div class="row match-height mt-2">
+            <!-- Table -->
+            <div class="col-xl-8 col-lg-12">
+                <div class="card active-users" style="height: 470px;">
+                    <div class="card-header border-0">
+                        <h4 class="card-title">Active Users</h4>
+
+                    </div>
+                    <div class="card-content">
+                        <div id="audience-list-scroll" class="table-responsive position-relative">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>site</th>
+                                    <th>Kısaltma</th>
+                                    <th>Durum</th>
+                                    <th>oluşturma tarihi</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr >
+                                    <td class="text-truncate">
+
+                                        <span class="text-truncate">Shwell Flintof</span>
+                                    </td>
+                                    <td class="align-middle">
+                                        <span>shwellFlint@gmail.com</span>
+                                    </td>
+                                    <td class="align-middle">
+                                        <span class="badge badge-success">Active</span>
+                                    </td>
+                                    <td class="align-middle">
+                                        <span>450MB</span>
+                                    </td>
+
+
+
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline -->
+            <div class="col-xl-4 col-lg-12">
+                <div class="card" style="height: 470px;">
+                    <div class="card-header border-0">
+                        <h4 class="card-title">Mesajlar</h4>
+                        <div class="heading-elements">
+                            <ul class="list-inline">
+                                <li><a data-action="reload"><i class="feather icon-rotate-cw"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <ul>
+                                <li class="timeline-items timeline-icon-info">
+
+                                    <div class="timeline-title">
+                                        <span class="badge badge-success">Active</span>
+                                        <p>_2, t0.description AS description_3, t0.image AS image_4 FROM feature </p>
+                                    </div>
+                                </li>
+
+                                <li class="timeline-items timeline-icon-info">
+
+                                    <div class="timeline-title">
+                                        <span class="badge badge-success">Active</span>
+                                        <p>_2, t0.description AS description_3, t0.image AS image_4 FROM feature </p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
